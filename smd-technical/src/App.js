@@ -9,7 +9,12 @@ function App() {
 
   function retrievePreferredMode(){
    let mode = localStorage.getItem("Mode");
-  return mode === "Dark";
+  if(mode ==="Dark"){
+    return false;
+  }
+  else{
+    return true;
+  }
   }
 
   const [darkMode, setDarkMode] = useState(retrievePreferredMode);
@@ -25,8 +30,8 @@ function App() {
 
 
   function themeMode() {
-    if (darkMode) {
-      setDarkMode(false);
+    if (!darkMode) {
+      setDarkMode(true);
       localStorage.setItem("Mode","Dark");
       setBgColour("hsl(230, 17%, 14%)");
       setCardBgColour("hsl(228, 28%, 20%)");
@@ -34,8 +39,8 @@ function App() {
       setTxtColour2("hsl(0, 0%, 100%)");
       
     } 
-    else if (!darkMode) {
-      setDarkMode(true);
+    else if (darkMode) {
+      setDarkMode(false);
       localStorage.setItem("Mode","Light");
       setBgColour("hsl(0, 0%, 100%)");
       setCardBgColour("hsl(227, 47%, 96%)");
@@ -98,7 +103,6 @@ function App() {
             amount={x.amount}
             increment={x.increment}
             username={x.username}
-            bgColour={cardBgColour}
             txtColour1={txtColour1}
             txtColour2={txtColour2}
             mode={darkMode}

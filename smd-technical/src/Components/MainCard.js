@@ -12,24 +12,41 @@ export function MainCard(props) {
   const incrementAbsoluteValue = Math.abs(incrementInt);
   const txtColour1 = props.txtColour1;
   const txtColour2 = props.txtColour2;
-  let cardBgColour = props.bgColour;
-
-  let darkMode = props.mode;
+  let darkMode = localStorage.getItem("Mode")
+  let defaultBg = defaultBgColour(darkMode);
   let triangle = incrementIcon(incrementInt);
   let borderColour;
 
+  console.log(darkMode);
+
+function defaultBgColour(){
+  if(darkMode === "Dark"){
+    return "hsl(228, 28%, 20%)";
+ }
+ else {
+     return "hsl(227, 47%, 96%)";
+ }
+  }
+  let[cardBgColour,setCardBgColour] = useState(defaultBg)
  
 
-//   function highlight(){
-//     if(!darkMode){
-//       setCardBgColour("hsl(228, 28%, 40%)");
-//     }
-//   }
-//   function reset(){
-//     if(!darkMode){
-//     setCardBgColour("hsl(228, 28%, 20%)");
-//     }
-//   }
+  function highlight(){
+    if(darkMode === "Dark"){
+      setCardBgColour("hsl(228, 28%, 40%)");
+    }
+    else{
+        setCardBgColour("hsl(227, 47%, 86%)");
+    }
+  }
+  function reset(){
+    if(darkMode === "Dark"){
+        setCardBgColour("hsl(228, 28%, 20%)");
+      }
+      else{
+          setCardBgColour("hsl(227, 47%, 96%)");
+      }
+    
+  }
 
 
   switch (icon) {
@@ -62,8 +79,8 @@ export function MainCard(props) {
         borderTopStyle: "solid",
         borderTopColor: borderColour,
       }}
-    //   onMouseEnter={highlight}
-    //   onMouseLeave={reset}
+      onMouseEnter={highlight}
+      onMouseLeave={reset}
     >
       <div
         style={{
