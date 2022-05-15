@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useState, useEffect } from "react";
 import { imageGenerator } from "./ImageGenerator";
 
 export function MainCard(props) {
@@ -12,14 +12,48 @@ export function MainCard(props) {
   const txtColour1 = props.txtColour1;
   const txtColour2 = props.txtColour2;
   let cardBgColour = props.bgColour;
+
+  let darkMode = props.mode;
   let triangle;
   let redOrGreen;
+  let borderColour;
+
   if (incrementInt > 0) {
     triangle = "up";
-    redOrGreen = "green";
+    redOrGreen = " hsl(163, 72%, 41%)";
   } else if (incrementInt < 0) {
     triangle = "down";
-    redOrGreen = "red";
+    redOrGreen = "hsl(356, 69%, 56%)";
+  }
+
+//   function highlight(){
+//     if(!darkMode){
+//       setCardBgColour("hsl(228, 28%, 40%)");
+//     }
+//   }
+//   function reset(){
+//     if(!darkMode){
+//     setCardBgColour("hsl(228, 28%, 20%)");
+//     }
+//   }
+
+
+  switch (icon) {
+    case 'yt':
+      borderColour = "hsl(348, 97%, 39%)";
+      break;
+    case 'insta':
+        borderColour = "linearGradient(hsl(37, 97%, 70%),hsl(329, 70%, 58%))";
+       //borderColour= "linear-gradient(to right,#e66465, #9198e5)"
+        break;
+    case 'twt':
+        borderColour= "hsl(203, 89%, 53%)";
+      break;
+    case 'fb':
+        borderColour = "hsl(208, 92%, 53%)";
+        break;
+    default:
+      console.log("Error");
   }
 
   return (
@@ -30,7 +64,12 @@ export function MainCard(props) {
         margin: 5,
         textAlign: "center",
         backgroundColor: cardBgColour,
+        borderTopWidth: 3,
+        borderTopStyle: "solid",
+        borderTopColor: borderColour,
       }}
+    //   onMouseEnter={highlight}
+    //   onMouseLeave={reset}
     >
       <div
         style={{
@@ -75,3 +114,7 @@ const style = {
     fontWeight: "bold",
   },
 };
+
+const mystyle={
+    background: 'linear-gradient(to right, #430089, #82ffa1)'
+  }

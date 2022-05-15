@@ -26,7 +26,8 @@ let redOrGreen;
 //
 
     return (
-        <div style={{
+        <div className="individual-card"
+         style={{
             minWidth: 260,
             padding: 10,
             margin: 5,

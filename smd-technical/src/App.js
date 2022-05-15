@@ -22,6 +22,8 @@ function App() {
   useEffect( () => {themeMode()},[])
 
 
+
+
   function themeMode() {
     if (darkMode) {
       setDarkMode(false);
@@ -99,10 +101,11 @@ function App() {
             bgColour={cardBgColour}
             txtColour1={txtColour1}
             txtColour2={txtColour2}
+            mode={darkMode}
           />
         ))}
       </div>
-      <h2 style={{ color: "white" }}>Overview - Today</h2>
+      <h2 style={{ color: txtColour1, paddingLeft:50 }}>Overview - Today</h2>
       <div className="overview" style={style.overviewCard}>
         
           {mockAPI2.map(x => <OverviewCard title={x.title} number={x.number} icon={x.icon} increment={x.increment}
@@ -110,6 +113,10 @@ function App() {
           />)}
           
       </div>
+      <div className="individual-cards">
+        <p>XXX</p>
+      </div>
+      
     </div>
   );
 }
