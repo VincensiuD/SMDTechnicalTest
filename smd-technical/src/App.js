@@ -3,24 +3,38 @@ import "./App.css";
 import { Header } from "./Components/Header";
 import { MainCard } from "./Components/MainCard";
 import { OverviewCard } from "./Components/OverviewCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
-  let [bgColour, setBgColour] = useState("hsl(230, 17%, 14%)");
-  let [cardBgColour,setCardBgColour] = useState("hsl(228, 28%, 20%)");
-  let [txtColour1,setTxtColour1] = useState("hsl(228, 34%, 66%)")
-  let [txtColour2,setTxtColour2] = useState("hsl(0, 0%, 100%)")
+
+  function retrievePreferredMode(){
+   let mode = localStorage.getItem("Mode");
+  return mode === "Dark";
+  }
+
+  const [darkMode, setDarkMode] = useState(retrievePreferredMode);
   
+  let [bgColour, setBgColour] = useState("");
+  let [cardBgColour,setCardBgColour] = useState("");
+  let [txtColour1,setTxtColour1] = useState("")
+  let [txtColour2,setTxtColour2] = useState("")
+  
+  useEffect( () => {themeMode()},[])
+
+
   function themeMode() {
     if (darkMode) {
       setDarkMode(false);
+      localStorage.setItem("Mode","Dark");
       setBgColour("hsl(230, 17%, 14%)");
       setCardBgColour("hsl(228, 28%, 20%)");
       setTxtColour1("hsl(228, 34%, 66%)");
-      setTxtColour2("hsl(228, 34%, 66%)");
-    } else if (!darkMode) {
+      setTxtColour2("hsl(0, 0%, 100%)");
+      
+    } 
+    else if (!darkMode) {
       setDarkMode(true);
+      localStorage.setItem("Mode","Light");
       setBgColour("hsl(0, 0%, 100%)");
       setCardBgColour("hsl(227, 47%, 96%)");
       setTxtColour1("hsl(228, 12%, 44%)");
@@ -89,37 +103,12 @@ function App() {
         ))}
       </div>
       <h2 style={{ color: "white" }}>Overview - Today</h2>
-      <div style={style.mainCard}>
-        <OverviewCard title="Page Views" number="87" icon="fb" increment="3" />
-        <OverviewCard title="Likes" number="52" icon="fb" increment="-2" />
-        <OverviewCard
-          title="Likes"
-          number="5462"
-          icon="insta"
-          increment="2257"
-        />
-        <OverviewCard
-          title="Profile Views"
-          number="52k"
-          icon="insta"
-          increment="1375"
-        />
-      </div>
-      <div style={style.mainCard}>
-        <OverviewCard
-          title="Retweets"
-          number="117"
-          icon="twt"
-          increment="303"
-        />
-        <OverviewCard title="Likes" number="507" icon="twt" increment="557" />
-        <OverviewCard title="Likes" number="107" icon="yt" increment="-19" />
-        <OverviewCard
-          title="Total Views"
-          number="1407"
-          icon="yt"
-          increment="-12"
-        />
+      <div className="overview" style={style.overviewCard}>
+        
+          {mockAPI2.map(x => <OverviewCard title={x.title} number={x.number} icon={x.icon} increment={x.increment}
+          bgColour={cardBgColour} txtColour1={txtColour1} txtColour2={txtColour2}
+          />)}
+          
       </div>
     </div>
   );
@@ -127,9 +116,44 @@ function App() {
 
 export default App;
 
-const style = { mainCard: { display: "flex", justifyContent: "space-evenly" } };
+const style = { 
+  mainCard: { display: "flex", justifyContent: "space-evenly", flexWrap:"wrap" },
+ overviewCard: { display: "flex", justifyContent: "space-evenly", flexWrap:"wrap" }
+};
 
 //   <MainCard icon="fb" type="F O L L O W E R S" amount="1987" increment="12" username="@nathanf"/>
 //  <MainCard icon="twt" type="F O L L O W E R S" amount="1044" increment="99" username="@nathanf"/>
 //  <MainCard icon="insta" type="F O L L O W E R S" amount="11k" increment="1099" username="@realnathanf"/>
 //  <MainCard icon="yt" type="S U B S C R I B E R" amount="8239" increment="-144" username="Nathan F."/>
+
+
+// <OverviewCard title="Page Views" number="87" icon="fb" increment="3" />
+// <OverviewCard title="Likes" number="52" icon="fb" increment="-2" />
+// <OverviewCard
+//   title="Likes"
+//   number="5462"
+//   icon="insta"
+//   increment="2257"
+// />
+// <OverviewCard
+//   title="Profile Views"
+//   number="52k"
+//   icon="insta"
+//   increment="1375"
+// />
+// </div>
+// <div style={style.mainCard}>
+// <OverviewCard
+//   title="Retweets"
+//   number="117"
+//   icon="twt"
+//   increment="303"
+// />
+// <OverviewCard title="Likes" number="507" icon="twt" increment="557" />
+// <OverviewCard title="Likes" number="107" icon="yt" increment="-19" />
+// <OverviewCard
+//   title="Total Views"
+//   number="1407"
+//   icon="yt"
+//   increment="-12"
+// />

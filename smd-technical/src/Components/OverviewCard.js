@@ -9,6 +9,9 @@ const icon = props.icon;
 const increment = props.increment;
 const incrementInt = parseInt(increment);
 const incrementAbsoluteValue = Math.abs(incrementInt);
+const bgColour = props.bgColour;
+const txtColour1 = props.txtColour1;
+const txtColour2 = props.txtColour2;
 let triangle;
 let redOrGreen;
     if(incrementInt>0){
@@ -19,16 +22,28 @@ let redOrGreen;
         triangle = "down";
         redOrGreen="red"
     }
+
+//
+
     return (
-        <div style={style.cards}>
+        <div style={{
+            minWidth: 260,
+            padding: 10,
+            margin: 5,
+            textAlign:'center',
+            backgroundColor:bgColour,
+            flexBasis: "20%",
+            justifyContent: "space-between",
+            maxWidth: 25,
+            }}>
             <div style={style.comp}>
-                <p>
+                <p style={{color:txtColour1}}>
                   {title}
                 </p>
                 <img src={imageGenerator(icon)} alt="social media icon"/>
             </div>
             <div style={style.comp}>
-                <div>
+                <div style={{color: txtColour2}}>
                     {number}
                 </div>
                 <div style={style.comp}>
@@ -52,12 +67,10 @@ const style={
            
     },
       cards:{
-        backgroundColor: "hsl(228, 28%, 20%)",
         minWidth: 200,
         padding: 10,
         margin: 5,
         textAlign:'center',
-        color:'white',
         
     },
 }

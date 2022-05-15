@@ -1,6 +1,7 @@
 .App {
   text-align: left;
-  padding: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
   background-color:  hsl(230, 17%, 14%);
 }
 
@@ -9,6 +10,19 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+
+.overview{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+}
+
+.overview-item{
+  flex: 0 0 24%;
+  background-color: yellow;
 }
 
 .App-header {
