@@ -1,6 +1,6 @@
 import {React} from "react";
 import { imageGenerator } from "./ImageGenerator";
-
+import { incrementColour, incrementIcon } from "./incrementFunctions";
 export function OverviewCard(props){
 
 const title = props.title;
@@ -12,19 +12,7 @@ const incrementAbsoluteValue = Math.abs(incrementInt);
 const bgColour = props.bgColour;
 const txtColour1 = props.txtColour1;
 const txtColour2 = props.txtColour2;
-let triangle;
-let redOrGreen;
-    if(incrementInt>0){
-        triangle = "up";
-        redOrGreen = "green"
-    }
-    else if(incrementInt<0){
-        triangle = "down";
-        redOrGreen="red"
-    }
-
-//
-
+let triangle = incrementIcon(increment);
     return (
         <div className="individual-card"
          style={{
@@ -49,7 +37,7 @@ let redOrGreen;
                 </div>
                 <div style={style.comp}>
                     <img src={imageGenerator(triangle)} alt="up or down"/>
-                    <p style={{color: redOrGreen}}>
+                    <p style={{color: incrementColour(increment)}}>
                         {incrementAbsoluteValue}%
                     </p>
                 </div>

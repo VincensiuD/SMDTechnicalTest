@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { imageGenerator } from "./ImageGenerator";
+import { incrementColour,incrementIcon } from "./incrementFunctions";
 
 export function MainCard(props) {
   const fansAmount = props.amount;
@@ -14,17 +15,10 @@ export function MainCard(props) {
   let cardBgColour = props.bgColour;
 
   let darkMode = props.mode;
-  let triangle;
-  let redOrGreen;
+  let triangle = incrementIcon(incrementInt);
   let borderColour;
 
-  if (incrementInt > 0) {
-    triangle = "up";
-    redOrGreen = " hsl(163, 72%, 41%)";
-  } else if (incrementInt < 0) {
-    triangle = "down";
-    redOrGreen = "hsl(356, 69%, 56%)";
-  }
+ 
 
 //   function highlight(){
 //     if(!darkMode){
@@ -90,7 +84,7 @@ export function MainCard(props) {
         style={{
           display: "flex",
           alignItems: "center",
-          color: redOrGreen,
+          color: incrementColour(incrementInt),
           justifyContent: "center",
         }}
       >
