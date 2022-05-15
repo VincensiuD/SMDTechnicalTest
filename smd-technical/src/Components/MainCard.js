@@ -13,12 +13,9 @@ export function MainCard(props) {
   const txtColour1 = props.txtColour1;
   const txtColour2 = props.txtColour2;
   let darkMode = localStorage.getItem("Mode")
-  let defaultBg = defaultBgColour(darkMode);
+  let cardBgColour = defaultBgColour();
   let triangle = incrementIcon(incrementInt);
   let borderColour;
-
-  console.log(darkMode);
-
 function defaultBgColour(){
   if(darkMode === "Dark"){
     return "hsl(228, 28%, 20%)";
@@ -27,23 +24,23 @@ function defaultBgColour(){
      return "hsl(227, 47%, 96%)";
  }
   }
-  let[cardBgColour,setCardBgColour] = useState(defaultBg)
- 
+  //let[cardBgColour,setCardBgColour] = useState("")
+ //setCardBgColour(defaultBg)
 
   function highlight(){
     if(darkMode === "Dark"){
-      setCardBgColour("hsl(228, 28%, 40%)");
+      cardBgColour=("hsl(228, 28%, 40%)");
     }
     else{
-        setCardBgColour("hsl(227, 47%, 86%)");
+       cardBgColour=("hsl(227, 47%, 86%)");
     }
   }
   function reset(){
     if(darkMode === "Dark"){
-        setCardBgColour("hsl(228, 28%, 20%)");
+        cardBgColour=("hsl(228, 28%, 20%)");
       }
       else{
-          setCardBgColour("hsl(227, 47%, 96%)");
+          cardBgColour=("hsl(227, 47%, 96%)");
       }
     
   }

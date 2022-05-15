@@ -7,8 +7,9 @@ import { useEffect, useState } from "react";
 
 function App() {
 
+  let mode = localStorage.getItem("Mode");
   function retrievePreferredMode(){
-   let mode = localStorage.getItem("Mode");
+   
   if(mode ==="Dark"){
     return false;
   }
