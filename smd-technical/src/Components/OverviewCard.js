@@ -7,24 +7,35 @@ const title = props.title;
 const number= props.number;
 const icon = props.icon;
 const increment = props.increment;
-
+const incrementInt = parseInt(increment);
+const incrementAbsoluteValue = Math.abs(incrementInt);
+let triangle;
+let redOrGreen;
+    if(incrementInt>0){
+        triangle = "up";
+        redOrGreen = "green"
+    }
+    else if(incrementInt<0){
+        triangle = "down";
+        redOrGreen="red"
+    }
     return (
-        <div>
-            <div>
-                <span>
+        <div style={style.cards}>
+            <div style={style.comp}>
+                <p>
                   {title}
-                </span>
+                </p>
                 <img src={imageGenerator(icon)} alt="social media icon"/>
             </div>
-            <div>
+            <div style={style.comp}>
                 <div>
                     {number}
                 </div>
-                <div>
-                    <img alt="social media icon"/>
-                    <span>
-                        {increment}
-                    </span>
+                <div style={style.comp}>
+                    <img src={imageGenerator(triangle)} alt="up or down"/>
+                    <p style={{color: redOrGreen}}>
+                        {incrementAbsoluteValue}%
+                    </p>
                 </div>
             </div>
            
@@ -32,3 +43,22 @@ const increment = props.increment;
         </div>
     );
 }
+
+const style={
+    comp:{
+        display: "flex",
+        justifyContent:"space-between",
+        alignItems: "center",
+           
+    },
+      cards:{
+        backgroundColor: "hsl(228, 28%, 20%)",
+        minWidth: 200,
+        padding: 10,
+        margin: 5,
+        textAlign:'center',
+        color:'white',
+        
+    },
+}
+
