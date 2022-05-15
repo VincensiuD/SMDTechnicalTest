@@ -1,29 +1,20 @@
 import React from "react";
-import { useState } from "react";
 import "./switch.css";
 
 export function Header(props){
 
-    const totalFollowers = props.totalFollowers
+    const totalFollowers = props.totalFollowers;
+    const themeChanger = props.themeFunction;
+    let textColour1 = props.txtColour1;
+    let textColour2 = props.txtColour2;
 
-    const [darkMode,setDarkMode] = useState(true)
-
-    function themeMode(){
-
-        if(darkMode){
-        setDarkMode(false);
-        }
-        else if(!darkMode){
-        setDarkMode(true);
-        }
-    }
 
     return(
-        <div style={header}>
+        <div style={styles.header}>
             <div>
-                <h1>Social Media Dashboard</h1>
-                <p>Total followers: {totalFollowers}</p>
-                <p>{darkMode.toString()}</p>
+                <h1 style={{color:textColour2}}>Social Media Dashboard</h1>
+                <p style={{color:textColour1}}>Total followers: {totalFollowers}</p>
+                
             </div>
             <div>
                 <div>                              
@@ -31,7 +22,7 @@ export function Header(props){
                 className="react-switch-checkbox"
                 id={`react-switch-new`}
                 type="checkbox"
-                onChange={themeMode}
+                onChange={themeChanger}
                 />
                 <label
                 className="react-switch-label"
@@ -46,10 +37,13 @@ export function Header(props){
     );
 }
 
-const header = {
+let styles = {
+    header: {
     justifyContent: "space-between",
     paddingLeft: 50,
-    display: "flex",
-    color:"white"
-    
+    display: "flex",    
+},
+    text:{
+        color: "pink"
+    }
 }

@@ -10,6 +10,9 @@ const icon = props.icon;
 const username = props.username;
 const incrementInt = parseInt(fansIncrement);
 const incrementAbsoluteValue = Math.abs(incrementInt);
+const txtColour1 = props.txtColour1;
+const txtColour2 = props.txtColour2;
+let cardBgColour = props.bgColour;
 let triangle;
 let redOrGreen;
     if(incrementInt>0){
@@ -23,15 +26,15 @@ let redOrGreen;
 
 
     return (
-        <div style={style.cards}>
+        <div style={{minWidth:190,padding: 10,margin: 5,textAlign:'center',backgroundColor: cardBgColour}}>
             <div style={{display: "flex", alignItems: "center",
            justifyContent:"center"}}>
                 <img src={imageGenerator(icon)} alt="icon"/>
-                <p>{username}</p>
+                <p style={{color:txtColour1}}>{username}</p>
             </div>
          
-          <p style={style.bigNum} >{fansAmount}</p>
-          <p >{fansType}</p>
+          <p style={{fontSize:50,fontWeight:"bold",color:txtColour2}} >{fansAmount}</p>
+          <p style={{color:txtColour1}}>{fansType}</p>
           <div style={{display: "flex",
           alignItems: "center",
           color:redOrGreen,
@@ -47,12 +50,11 @@ let redOrGreen;
 
 const style = {
     cards:{
-        backgroundColor: "hsl(228, 28%, 20%)",
         minWidth: 200,
         padding: 10,
         margin: 5,
         textAlign:'center',
-        color:'white',
+        color:'green',
         
     },
     bigNum:{
